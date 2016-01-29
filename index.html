@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="infiniteAgenda">
+<head>
+	<title>Infinite Agenda</title>
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+
+</head>
+<body>
+
+	<div class="heading">
+		<h1>Here is your agenda - Into the future, for forever!</h1>
+		<h5>Click on each category to add your agenda.</h5>
+	</div>
+
+	<div class="overallCalendar" ng-controller="controllerCalendar">
+		<div class="calendarEntries" ng-repeat="allCalendarObjs in calendarArray">
+			<ul>
+				<li class="date">Date: {{allCalendarObjs.date | date }}</li>
+				<li class="time"><span class="timeSpan" ng-click="showHideTime(allCalendarObjs)"><strong>Time: </strong></span><span ng-hide="allCalendarObjs.hideTimeBox">{{allCalendarObjs.time || 'choose time....' || time }}</span><input type="time" ng-show="allCalendarObjs.hideTimeBox" ng-model="allCalendarObjs.time" ng-blur="showHideTime(allCalendarObjs)">
+				</li>
+				<li class="title"><span class="titleSpan" ng-click="showHideTitle(allCalendarObjs)"><strong>Title: </strong></span><span ng-hide="allCalendarObjs.hideTitleBox">{{allCalendarObjs.title}}</span><textarea type="text" ng-show="allCalendarObjs.hideTitleBox" ng-model="allCalendarObjs.title" ng-blur="showHideTitle(allCalendarObjs)"></textarea>
+				</li>
+				<li class="description"><span class="descriptionSpan" ng-click="showHideText(allCalendarObjs)"><strong>Description: </strong></span><span ng-hide="allCalendarObjs.hideTextBox">{{allCalendarObjs.description}}</span><textarea type="text" ng-show="allCalendarObjs.hideTextBox" ng-model="allCalendarObjs.description" ng-blur="showHideText(allCalendarObjs)"></textarea>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<footer>
+		<h3>Go back up to the top</h3>
+		<p>This infinite scroll creates a really long page!</p>
+		</footer>
+	</div>
+</body>
+
+</html>
